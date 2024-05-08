@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="description" content="E-commerce product page">
+  <meta name="keywords" content="E-commerce, product">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" 
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" 
+    crossorigin="anonymous"
+  >
+  
+  <title>Frontend Mentor | E-commerce product page</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+    
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Kumbh Sans", sans-serif;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <!-- nav -->
+  <header>
+    <nav class="container mx-auto px-6 sm:px-10 py-3 md:py-0 flex justify-between items-center border-b-2">
+      <div class="flex gap-3 items-center">
+        <i class="bi bi-list cursor-pointer text-black text-2xl md:hidden" id="openIcon"></i>
+        <img src="./images/logo.svg" alt="logo image" class="w-24 sm:w-36 cursor-pointer">
+      </div>
+      
+      <div class="absolute top-0 left-0 h-screen w-screen bg-black opacity-25 hidden duration-300" id="overlay"></div>
+      
+      <div class="absolute top-0 left-0 h-screen w-48 bg-white p-6 -translate-x-full duration-300 
+      md:relative md:translate-x-0 md:bg-none md:h-auto md:w-auto lg:grow lg:ps-16 z-10" id="sidebar">
+        <i class="bi bi-x-lg text-gray-400 text-2xl block mb-8 cursor-pointer md:hidden" id="closeIcon"></i>
+        <ul class="md:flex md:gap-3 lg:gap-6">
+          <li class="mb-5 md:mb-0">
+            <a 
+              href="#" 
+              class="font-bold text-lg md:text-gray-500 md:font-normal md:hover:text-orange-400 duration-300">
+              Collections
+            </a>
+          </li>
+          <li class="mb-5 md:mb-0">
+            <a 
+              href="#" 
+              class="font-bold text-lg md:text-gray-500 md:font-normal md:hover:text-orange-400 duration-300">
+              Men
+            </a>
+          </li>
+          <li class="mb-5 md:mb-0">
+            <a 
+              href="#" 
+              class="font-bold text-lg md:text-gray-500 md:font-normal md:hover:text-orange-400 duration-300">
+              Women
+            </a>
+          </li>
+          <li class="mb-5 md:mb-0">
+            <a 
+              href="#" 
+              class="font-bold text-lg md:text-gray-500 md:font-normal md:hover:text-orange-400 duration-300">
+              About
+            </a>
+          </li>
+          <li class="mb-5 md:mb-0">
+            <a 
+              href="#" 
+              class="font-bold text-lg md:text-gray-500 md:font-normal md:hover:text-orange-400 duration-300">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex gap-5 items-center">
+        <div class="relative">
+          <i class="bi bi-cart text-2xl cursor-pointer" id="cartIcon"></i>
+          <span 
+            class="absolute bg-orange-400 rounded-[50%] p-2 w-5 h-5 flex items-center 
+            justify-center text-white -top-1 -right-3 text-sm"
+          >
+            3
+          </span>
+
+          <div 
+            class="absolute z-10 bottom-0 left-0 bg-white shadow translate-y-36 w-64 -translate-x-44 p-5 
+            rounded-md hidden" 
+            id="cartMenu"
+          >
+            <h3 class="font-bold border-b-2 pb-3 mb-6">Cart</h3>
+
+            <div class="text-center text-gray-500 font-bold">
+              Your cart is empty.
+            </div>
+          </div>
+        </div>
+        <img 
+          src="./images/image-avatar.png" 
+          alt="persone image" 
+          class="w-8 sm:w-11 h-8 sm:h-11 hover:border-2 hover:border-orange-500 border-solid 
+          rounded-[50%] cursor-pointer"
+        
+          >
+      </div>
+    </nav>
+  </header>
+
+  <!-- main -->
+  <main class="md:mt-5 md:flex items-center justify-evenly gap-12 md:px-6 md:container mx-auto">
+    <!-- left/up -->
+    <div class="flex flex-1 justify-center md:max-w-[500px]">
+      <!-- slider -->
+      <div class="relative overflow-x-hidden md:hidden w-screen">
+        <!-- slider images -->
+        <div class="flex duration-500 ease-in-out w-[400vw]" id="slides" data-slide="0">
+          <img src="./images/image-product-1.jpg" alt="Shoes image" class="w-screen">
+          <img src="./images/image-product-2.jpg" alt="Shoes image" class="w-screen">
+          <img src="./images/image-product-3.jpg" alt="Shoes image" class="w-screen">
+          <img src="./images/image-product-4.jpg" alt="Shoes image" class="w-screen">
+        </div>
+
+        <!-- next -->
+        <i class="bi bi-arrow-right-circle-fill text-white cursor-pointer text-3xl 
+        absolute right-2 top-1/2 -translate-y-1/2" id="nextSlide"></i>
+        <!-- prev -->
+        <i class="bi bi-arrow-left-circle-fill text-white cursor-pointer text-3xl 
+        absolute left-2 top-1/2 -translate-y-1/2" id="prevSlide"></i>
+      </div>
+
+      <!-- grid -->
+      <div class="hidden md:block">
+        <img 
+          src="./images/image-product-1.jpg" 
+          alt="Shoes image" 
+          id="presentImage" 
+          class="block max-w-80 rounded-3xl mb-5"
+        >
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8 max-w-80">
+          <img 
+            src="./images/image-product-1-thumbnail.jpg" 
+            alt="Shoes image" 
+            class="rounded-md duration-100 hover:border-4 border-orange-500 cursor-pointer thumbImage"
+          >
+          <img 
+            src="./images/image-product-2-thumbnail.jpg" 
+            alt="Shoes image" 
+            class="rounded-md duration-100 hover:border-4 border-orange-500 cursor-pointer thumbImage"
+          >
+          <img 
+            src="./images/image-product-3-thumbnail.jpg" 
+            alt="Shoes image" 
+            class="rounded-md duration-100 hover:border-4 border-orange-500 cursor-pointer thumbImage"
+          >
+          <img 
+            src="./images/image-product-4-thumbnail.jpg" 
+            alt="Shoes image" 
+            class="rounded-md duration-100 hover:border-4 border-orange-500 cursor-pointer thumbImage"
+          >
+        </div>
+      </div>
+    </div>
+    <!-- right/down -->
+    <div class="p-5 flex-1 max-w-[500px] mx-auto">
+      <p class="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">Sneaker Company</p>
+      <h1 class="font-bold text-2xl mb-7 md:text-4xl">Fall Limited Edition Sneakers</h1>
+      <p class="text-gray-500 mb-7">
+        These low-profile sneakers are your perfect casual wear companion. 
+        Featuring a durable rubber outer sole, 
+        
+          they’ll withstand everything the weather can offer.
+      </p>
+      <h3 class="font-bold text-4xl 
+      mb-2">
+        $125 <span class="text-orange-500 bg-orange-100 py-1 px-3 rounded text-sm ms-2">50%</span>
+      </h3>
+      <p class="line-through text-gray-400 font-bold text-sm mb-7">$250.00</p>
+
+      <div>
+        <!-- counter -->
+        <div class="flex justify-between items-center bg-gray-200 rounded px-3 py-2 mb-2">
+          <span 
+            class="text-2xl cursor-pointer text-orange-500 font-bold duration-300 hover:text-orange-300" 
+            id="minus">
+            -
+          </span>
+          <span id="counter">0</span>
+          <span 
+            class="text-2xl cursor-pointer text-orange-500 font-bold duration-300 hover:text-orange-300" 
+            id="plus">
+            +
+          </span>
+        </div>
+        <!-- add to cart -->
+        <button 
+          class="bg-orange-500 text-white font-bold text-sm w-full p-3 
+          rounded hover:bg-orange-300 duration-300"
+        >
+          <i class="bi bi-cart"></i> Add to cart
+        </button>
+      </div>
+    </div>
+  </main>
+  
+  <script src="./main.js"></script>
+</body>
+</html>
